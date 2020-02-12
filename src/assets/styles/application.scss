@@ -1,0 +1,21 @@
+@import "theme_provider.scss";
+
+@import "base_styles";
+
+@import "fonts";
+
+@import "typography";
+
+@import "styles";
+
+@import "helpers";
+
+// nps-page
+
+@import "components/nps-page/nps_header";
+
+@import "components/nps-page/nps_form";
+
+// .comparing-cars-page__close-button z-index 999
+// .comparing-cars-page::before z-index 105
+

@@ -1,0 +1,84 @@
+.ui-base-form,
+.loyalty-popup,
+.form-gray {
+
+	&__white {
+		background: #ffffff;
+	}
+
+	&__white-inner {
+		padding: map_get($mq-container-indents, "sx") / 2 map_get($mq-container-indents, "sx") / 4 map_get($mq-container-indents, "sx") / 4;
+
+		@include mq(sx) {
+			padding: map_get($mq-container-indents, "sx");
+		}
+	}
+
+	&__form {
+		padding: map_get($mq-container-indents, "sx") map_get($mq-container-indents, "sx") map_get($mq-container-indents, "sx") / 2;
+
+		@include mq-custom(max, 760px) {
+			padding-right: map_get($mq-container-indents, "sx") / 2;
+			padding-left: map_get($mq-container-indents, "sx") / 2;
+		}
+
+		@include mq-custom(max, 700px) {
+			padding: map_get($mq-container-indents, "sx") / 4 map_get($mq-container-indents, "sx") / 4 .7rem;
+		}
+
+		.button {
+			margin-top: map_get($mq-container-indents, "sx") / 2;
+
+			@include mq-custom(max, 700px) {
+				margin-top: map_get($mq-container-indents, "sx") / 4;
+			}
+		}
+	}
+
+	&__form-inner {
+		@include mq-custom(min, 700px) {
+			@include grid;
+		}
+	}
+
+	&__form-column {
+		@include mq-custom(min, 700px) {
+			@include grid-col-mx(1/2);
+		}
+	}
+
+	&__form-info {
+		position: absolute;
+		top: calc(50% - 3.2px);
+		right: map_get($mq-container-indents, "sx") / 4;
+		z-index: 3;
+		outline: none;
+	}
+
+	&__form-agreement {
+		@include text-minimal(400);
+
+		margin-top: map_get($mq-container-indents, "sx") / 4;
+		color: $color-lighter;
+		text-align: center;
+
+		a {
+			color: $color-base;
+		}
+	}
+}
+
+.ui-base-form,
+.loyalty-popup,
+.form-gray {
+
+	&__form {
+		@include mq(sx) {
+			padding-top: map_get($mq-container-indents, "sx") / 2;
+		}
+
+		@include mq(sm) {
+			padding-bottom: map_get($mq-container-indents, "sx") / 4;
+		}
+	}
+}

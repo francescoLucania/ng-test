@@ -1,0 +1,314 @@
+@charset "UTF-8";
+
+@if $enable-selects == true {
+
+	.select {
+		position: relative;
+
+		&__tag {
+			display: block;
+			padding: .5rem 2.5rem .5rem .75rem;
+			width: 100%;
+			border: 1px solid $color-lightest;
+
+			+ .select__arrow {
+				@include size(0);
+
+				position: absolute;
+				top: 50%;
+				right: 1rem;
+				transform: translateY(-50%);
+				display: block;
+				border-top: .4rem solid $color-lighter;
+				border-right: .4rem solid transparent;
+				border-left: .4rem solid transparent;
+				pointer-events: none;
+			}
+
+			&:disabled {
+				opacity: .5;
+			}
+		}
+
+		&.select--invalid {
+
+			> .select__tag {
+				border-color: $color-error;
+			}
+		}
+	}
+}
+
+// select native
+
+.select-native {
+	@include text-base-big(500);
+	padding: 1.2rem 1.6rem;
+
+	width: 100%;
+	height: map_get($mq-container-indents, "sm") * 2;
+	border-radius: 0;
+	border: none;
+	background: #fff;
+	outline: none;
+	cursor: pointer;
+	color: $color-base;
+	box-sizing: border-box;
+	text-indent: 0.01px;
+	text-overflow: "";
+	-ms-appearance: none;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	appearance: none !important;
+}
+
+// v2 https://vue-select.org/
+
+.v-select-wrapper {
+
+	&.v-select-wrapper--selected {
+
+		.vs__dropdown-toggle {
+			min-height: 6.4rem;
+		}
+
+		.vs__select-multiply .vs__selected {
+			display: inline;
+		}
+
+		.vs__select-multiply .vs__search {
+			@include size(100%);
+
+			position: absolute;
+			top: 0;
+			left: 0;
+			opacity: 0;
+		}
+
+		.vs__select-multiply .vs__dropdown-toggle {
+			display: flex;
+			align-items: center;
+		}
+
+		.vs__select-multiply .vs__selected-options {
+			@include ellipsis(100%, block);
+
+			margin-top: 1.6rem;
+			width: 100%;
+		}
+	}
+}
+
+.v-select {
+	margin-bottom: .2rem;
+
+	&.vs--open {
+
+		.vs__open-indicator {
+			transform: none;
+
+			&.select-arrow {
+				border-top-color: $color-base;
+			}
+		}
+	}
+
+	&.vs--disabled {
+
+		.vs__search {
+			color: $color-lighter;
+		}
+	}
+
+	&--bottom-border {
+
+		.vs__dropdown-toggle {
+			box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.12);
+		}
+	}
+
+	&-wrapper {
+		position: relative;
+
+		/*&--selected {
+      .vs__selected-options {
+        @include ellipsis($width: 100%, $display: block);
+
+        text-align: left;
+
+        > * {
+          line-height: 4.4rem;
+          display: inline-block;
+        }
+      }
+    }*/
+	}
+
+	&-label {
+		@include font(1.4rem, 1.6rem);
+
+		position: absolute;
+		top: 1rem;
+		left: map_get($mq-container-indents, "sx") / 4;
+		z-index: 2;
+		display: none;
+		color: $color-placeholder;
+
+		.v-select-wrapper--selected:not(.v-select-wrapper--open-mob) & {
+			display: block;
+		}
+	}
+}
+
+.vs__dropdown-toggle {
+	padding: 0 2.1rem 0 0;
+	border-radius: 2px;
+	border: none;
+	background: #ffffff;
+
+	.vs__selected {
+		@include text-base-big(500);
+		margin: 0;
+		padding: 0 0 0 map_get($mq-container-indents, "sx") / 4;
+
+		height: map_get($mq-container-indents, "sx");
+		border-radius: 0;
+		border: none;
+		background-color: transparent;
+		white-space: nowrap;
+	}
+
+	.v-select-wrapper--selected & {
+
+		.vs__selected,
+		.vs__search {
+			padding-top: 2rem;
+		}
+	}
+
+	.v-select-wrapper--open-mob & {
+		display: none;
+	}
+
+	.vs__deselect {
+		display: none;
+	}
+
+	.vs__selected-options {
+		flex-wrap: nowrap;
+		padding: 0;
+		overflow: hidden;
+	}
+
+	.vs__search {
+		@include text-base-big(500);
+
+		margin: 0;
+		padding: 0 map_get($mq-container-indents, "sx") / 4;
+		height: map_get($mq-container-indents, "sx");
+	}
+
+	.vs__actions {
+		padding: 0 0 0 map_get($mq-container-indents, "sx") / 8;
+	}
+
+	.select-arrow {
+		@include size(0, 0);
+		margin-top: 3px;
+
+		border-width: 6px 5px;
+		border-color: transparent;
+		border-style: solid;
+		border-top-color: $color-placeholder;
+
+		.vs__dropdown-toggle:hover & {
+			border-top-color: $color-base;
+		}
+	}
+}
+
+.vs__dropdown-menu {
+	top: calc(100% + 2px);
+	left: -.1rem;
+	padding: 0 !important;
+	width: calc(100% + 2px);
+	border: 1px solid rgba(26, 26, 26, 0.07);
+
+	.v-select-wrapper--open-mob & {
+		position: static;
+		width: auto;
+	}
+
+	@include mq(sm){
+		border-radius: 0;
+	}
+}
+
+.vs__no-options {
+	@include text-small(400);
+
+	padding: map_get($mq-container-indents, "sx") / 4;
+	text-align: left;
+}
+
+.vs__dropdown-option {
+	@include text-base-big(500);
+	position: relative;
+
+	padding: 0 map_get($mq-container-indents, "sm") * 2 0 map_get($mq-container-indents, "sx") / 4;
+	line-height: map_get($mq-container-indents, "sm") * 2;
+
+	& + & {
+		border-top: .1rem solid $color-lightest-popup;
+	}
+
+	&--highlight {
+		background: $color-lightest-popup;
+		color: $color-base;
+
+		@include mq(sm){
+			background: #ffffff;
+		}
+	}
+
+	.vs__dropdown-option-round {
+		@include size(2rem);
+		position: absolute;
+		top: calc(50% - 10px);
+		right: map_get($mq-container-indents, "sx") / 4;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		border-radius: 50%;
+		border: 1px solid $color-placeholder;
+
+		&--noborder {
+			border: none;
+		}
+
+		.icon {
+			display: none;
+
+			&--12 {
+				@include size(1.2rem);
+			}
+		}
+	}
+
+	&--selected {
+
+		.vs__dropdown-option-round {
+			background: $brand-turquoise;
+
+			&:not(.vs__dropdown-option-round--white) {
+				border: none;
+			}
+
+			.icon {
+				display: block;
+			}
+		}
+	}
+}
+

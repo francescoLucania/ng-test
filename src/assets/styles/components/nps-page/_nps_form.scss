@@ -1,0 +1,19 @@
+@charset "UTF-8";
+
+.nps-form {
+	@include mq(sx) {
+		margin: 0 auto;
+		max-width: 63.2rem;
+	}
+
+	&__title {
+		@include header-h2(700);
+
+		margin-bottom: map_get($mq-container-indents, "sx") / 2;
+		text-align: center;
+
+		@include mq(sx) {
+			margin-bottom: map_get($mq-container-indents, "sx");
+		}
+	}
+}

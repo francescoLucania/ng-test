@@ -1,0 +1,381 @@
+@charset "UTF-8";
+
+.comparing-cars-page {
+	padding: map_get($mq-container-indents, "sx") / 2;
+	min-height: 100vh;
+	background: $color-lightest-secondary;
+
+	&::before,
+	&::after {
+		@include size(100%, 3.2rem);
+
+		position: fixed;
+		right: 0;
+		left: 0;
+		z-index: 105;
+		background: $color-lightest-secondary;
+		content: "";
+	}
+
+	&::before {
+		top: 0;
+	}
+
+	&::after {
+		bottom: 0;
+	}
+
+	&__title {
+		@include header-h2;
+
+		margin-bottom: map_get($mq-container-indents, "sx") / 2;
+	}
+
+	&__back-button {
+		@include interact(fill, $brand-turquoise, "hover .icon");
+		@include size(4.8rem);
+
+		position: fixed;
+		top: map_get($mq-container-indents, "sx") / 2;
+		right: map_get($mq-container-indents, "sx") / 2;
+		z-index: 999;
+		border-radius: 50%;
+		background: #fff;
+		box-shadow: 0 0.1rem 0 rgba(0, 0, 0, 0.12);
+		font-size: 0;
+
+		.icon {
+			@include size(1.6rem);
+
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			fill: $color-base;
+		}
+	}
+
+	&__main {
+		margin: 0 auto;
+		min-width: calc(70rem - #{map_get($mq-container-indents, "sx")}); // 64px- container gutters
+	}
+}
+
+.comparing-cars-page-table {
+	position: relative;
+	z-index: 100;
+	display: flex;
+	align-items: stretch;
+
+	&--header {
+		top: map_get($mq-container-indents, "sx") / 2;
+		z-index: 101;
+
+		.mod_no-flexboxtweener & {
+			position: sticky;
+		}
+	}
+
+	// header styles
+
+	&__header-column {
+		margin-right: map_get($mq-container-indents, "sx") / 2;
+		min-width: 29.2rem;
+		max-width: 29.2rem;
+		border-radius: $border-radius-min;
+		background: #fff;
+		box-shadow: 0 1px 0 rgba(0, 0, 0, 0.12);
+	}
+
+	&__header-column-base-information {
+		top: 3.2rem;
+		z-index: 1;
+		display: flex;
+		flex-direction: column;
+		padding: map_get($mq-container-indents, "sx") / 4 map_get($mq-container-indents, "sx") / 4 1.2rem;
+		min-height: 16.5rem;
+		max-height: 16.5rem;
+		background: #fff;
+
+		.mod_no-flexboxtweener & {
+			position: sticky;
+		}
+
+		.comparing-cars-page-table--with-mileage-mod {
+			min-height: 23rem;
+			max-height: 23rem;
+		}
+	}
+
+	&__header-column-base-information-list,
+	&__header-column-base-information-switch-box {
+		width: 100%;
+	}
+
+	&__header-column-base-information-list {
+		@include text-offer;
+
+		margin-bottom: map_get($mq-container-indents, "sx") / 4;
+
+		b,
+		strong {
+			font-weight: 700;
+		}
+	}
+
+	&__header-column-base-information-switch-box {
+		margin-top: auto;
+	}
+	// close header styles
+
+	&__header-column-options-box {
+		position: relative;
+		z-index: 0;
+	}
+
+	// switch styles
+
+	&__content-table-column {
+		flex-grow: 1;
+	}
+
+	&__switch {
+	}
+
+	&__switch-label {
+		@include text-base-big(500);
+
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		white-space: nowrap;
+		cursor: pointer;
+	}
+
+	&__switch-checkbox {
+		@include size(2rem);
+
+		position: relative;
+		margin-left: map_get($mq-container-indents, "sm");
+	}
+
+	&__switch-checkbox-input,
+	&__switch-checkbox-input + div {
+		@include size(100%);
+
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+
+	&__switch-checkbox-input {
+		z-index: 2;
+		cursor: pointer;
+		opacity: 0;
+
+		&:checked {
+
+			+ div {
+				background-color: $brand-turquoise;
+				border-color: $brand-turquoise;
+			}
+		}
+
+		+ div {
+			z-index: 0;
+			border-radius: 50%;
+			border: 1px solid $color-placeholder;
+			background-color: #fff;
+			transition: background-color $transition-duration-base-min, border-color $transition-duration-base-min;
+		}
+
+		+ div + .icon {
+			@include size(2rem);
+
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -45%);
+			z-index: 1;
+			fill: #fff;
+		}
+	}
+	// close switch styles
+
+	// auto-column styles
+
+	&__auto-column {
+		max-width: calc(100vw - 29.2rem - 9.6rem);
+		background: #fff;
+		box-shadow: 0 1px 0 rgba(0, 0, 0, 0.12);
+		overflow-y: hidden;
+		will-change: scroll-position;
+		-webkit-overflow-scrolling: touch;
+		scroll-snap-type: x mandatory;
+	}
+
+	&__header-column-footer {
+		padding: map_get($mq-container-indents, "sx") / 4;
+		border-top: 1px solid $color-lightest-popup;
+	}
+
+	&__header-column-footer-list {
+
+		&:not(:last-child) {
+			margin-bottom: .8rem;
+		}
+
+		li {
+			@include header-offer-h5(400);
+
+			&:not(:last-child) {
+				margin-bottom: .8rem;
+			}
+		}
+	}
+}
+
+
+.comparing-cars-page-grid {
+	display: flex;
+	align-items: stretch;
+
+	&__col {
+		border-right: 1px solid;
+		border-left: 1px solid;
+		border-color: $color-lightest-popup;
+
+		&:first-child {
+			border-left: transparent;
+		}
+
+		&:last-child {
+			border-right: transparent;
+		}
+	}
+
+	&__item {
+		position: relative;
+		min-width: 16.2rem;
+		max-width: 16.2rem;
+	}
+
+	.comparing-cars-page-grid__remove-button {
+		@include size(2rem);
+
+		position: absolute;
+		top: 1rem;
+		right: 1rem;
+		z-index: 99;
+		outline: none;
+		font-size: 0;
+	}
+
+	&__item-base-information {
+		top: 3.2rem;
+		z-index: 1;
+		display: flex;
+		flex-direction: column;
+		padding: map_get($mq-container-indents, "sx") / 4;
+		min-height: 16.5rem;
+		max-height: 16.5rem;
+		background: #fff;
+
+		.mod_no-flexboxtweener & {
+			position: sticky;
+		}
+
+		.comparing-cars-page-table--with-mileage-mod {
+			min-height: 23rem;
+			max-height: 23rem;
+		}
+	}
+
+	&__header-column-base-information-list {
+		@include text-offer;
+
+		margin-bottom: map_get($mq-container-indents, "sx") / 4;
+
+		li {
+			@include ellipsis(100%, block);
+
+			h3,
+			b,
+			strong {
+
+
+				font-size: inherit;
+				line-height: inherit;
+				font-weight: 700;
+
+				a {
+					@include ellipsis(100%, block);
+
+					font-weight: inherit;
+				}
+
+			}
+		}
+	}
+
+	&__item-base-information-images {
+		display: block;
+		margin-top: auto;
+
+		> img {
+			width: 100%;
+			height: auto;
+			vertical-align: top;
+		}
+	}
+
+	&__header-column-options-box {
+		position: relative;
+		z-index: 0;
+	}
+
+	&__item-header-column-footer {
+		padding: map_get($mq-container-indents, "sx") / 4;
+		border-top: 1px solid $color-lightest-popup;
+	}
+
+	&__item-header-column-footer-list {
+
+		&:not(:last-child) {
+			margin-bottom: .8rem;
+		}
+
+		li {
+			@include header-offer-h5(400);
+
+			&:not(:last-child) {
+				margin-bottom: .8rem;
+			}
+
+			a {
+				font-weight: 500;
+			}
+		}
+	}
+}
+
+.comparing-cars-page-table-pseudo {
+	position: fixed;
+	right: 3.2rem;
+	bottom: 3.2rem;
+	left: calc(29.2rem + #{map_get($mq-container-indents, "sx")}); // 64px - padding
+	z-index: 100;
+	height: 1.5rem;
+	opacity: 1;
+	transition: opacity .2s linear;
+	scroll-snap-type: x mandatory;
+	-webkit-overflow-scrolling: touch;
+	will-change: scroll-position;
+	overflow-x: scroll;
+
+	&__scroll-sizer {
+		display: block;
+		height: 1.5rem;
+		background: #fff;
+	}
+}

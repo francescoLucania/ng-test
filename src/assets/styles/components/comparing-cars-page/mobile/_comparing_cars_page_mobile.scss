@@ -1,0 +1,170 @@
+@charset "UTF-8";
+
+.comparing-cars-page-mobile {
+	@include text-base-big(500);
+
+	background: $color-lightest-secondary;
+
+	&__header {
+		position: relative;
+	}
+
+	&__title {
+		@include text-base-big(700);
+
+		padding: 1.2rem map_get($mq-container-indents, "sx") / 2;
+		text-align: center;
+	}
+
+	&__back-button {
+		@include size(1.6rem);
+
+		position: absolute;
+		top: map_get($mq-container-indents, "sx") / 4;
+		right: map_get($mq-container-indents, "sx") / 4;
+		font-size: 0;
+
+		.icon {
+			@include size(1.6rem);
+
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			fill: $color-base;
+		}
+	}
+}
+
+.comparing-cars-page-mobile-table {
+
+	&__main {
+		padding-bottom: map_get($mq-container-indents, "sx") / 4;
+		min-height: calc(100vh - #{map_get($mq-container-indents, "sm") * 2});
+		background: #ffffff;
+	}
+
+	&__header-column {
+		display: flex;
+		border-bottom: 2px solid $color-lightest-popup;
+	}
+
+	&__header-column-item {
+		position: relative;
+		padding: map_get($mq-container-indents, "sx") / 8 map_get($mq-container-indents, "sx") / 4 map_get($mq-container-indents, "sx") * 1.5;
+		width: calc(50% - 2px);
+
+		&::after {
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			z-index: 2;
+			content: "";
+		}
+
+		& + & {
+			width: calc(50% + 2px);
+			border-left: 2px solid $color-lightest-popup;
+		}
+	}
+
+	&__header-column-delete {
+		position: absolute;
+		top: .6rem;
+		right: .6rem;
+		z-index: 3;
+	}
+
+	&__header-column-title {
+		@include header-offer-h5;
+	}
+
+	&__header-column-text {
+		@include text-offer;
+	}
+
+	&__header-column-image {
+		position: absolute;
+		bottom: map_get($mq-container-indents, "sx") / 2;
+		left: 50%;
+		transform: translateX(-50%);
+		height: 5.7rem;
+	}
+
+	&__header-column-slides {
+		@include text-small(400);
+		position: absolute;
+		right: 0;
+		bottom: map_get($mq-container-indents, "sx") / 8;
+		left: 0;
+
+		color: $color-placeholder;
+		text-align: center;
+
+		.icon {
+			position: relative;
+			z-index: 3;
+			margin: 0 .2rem;
+
+			&--right {
+				transform: rotate(180deg);
+			}
+		}
+	}
+
+	// switch
+
+	&__switch-checkbox-input {
+		display: none;
+	}
+
+	&__switch {
+		display: flex;
+		justify-content: space-between;
+		padding: 2rem map_get($mq-container-indents, "sx") / 4;
+	}
+
+	&__switch-checkbox {
+		@include size(4rem, 2rem);
+		position: relative;
+		border-radius: 1rem;
+
+		border: 2px solid $color-lightest-popup;
+
+		&::after {
+			@include size(2rem);
+			position: absolute;
+			top: -2px;
+			left: -2px;
+			border-radius: 50%;
+			border: 2px solid $color-lightest-popup;
+			background: #ffffff;
+
+			transition: left ease $transition-duration-base;
+			content: "";
+		}
+
+		.comparing-cars-page-mobile-table__switch-checkbox-input:checked + & {
+			background: $brand-turquoise;
+			border-color: $brand-turquoise;
+
+			&::after {
+				left: calc(100% - 18px);
+				border-color: $brand-turquoise;
+			}
+		}
+	}
+
+	&__options-box {
+		margin: 0 map_get($mq-container-indents, "sx") / 4;
+		border-radius: 2px;
+		border: 2px solid $color-lightest-popup;
+	}
+
+	&__item-open {
+		padding: map_get($mq-container-indents, "sx") / 4 map_get($mq-container-indents, "sx") / 4 0;
+		border-top: 2px solid $color-lightest-popup;
+	}
+}

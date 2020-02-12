@@ -1,0 +1,233 @@
+@charset "UTF-8";
+
+.ng-comparing-cars-accordion {
+
+	&--not-arrow {
+
+		.mat-expansion-panel-header-title {
+			margin-right: 0;
+		}
+
+		.mat-expansion-indicator {
+			display: none !important;
+		}
+	}
+
+	&__title-icon-box {
+		@include size(3.2rem);
+
+		position: relative;
+		margin-right: map_get($mq-container-indents, "sx") / 4;
+		min-width: 3.2rem;
+		border-radius: 50%;
+		background-color: $color-base;
+
+		&[data-icon-type] {
+			position: relative;
+
+			&::before {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				background: {
+					position: 50%;
+					size: contain;
+					repeat: no-repeat;
+				};
+				content: "";
+			}
+		}
+
+		&[data-icon-type="Цена с макс. скидкой"] {
+			background-color: #FF5F5F;
+
+			&::before {
+				@include size(2.2rem, 1.4rem);
+
+				background-image: url(../img/icons/comparing-cars/price.svg);
+			}
+		}
+
+		&[data-icon-type="Безопасность"] {
+			background-color: $color-base;
+
+			&::before {
+				@include size(1.2rem, 1.4rem);
+
+				background-image: url(../img/icons/comparing-cars/security.svg);
+			}
+		}
+
+		&[data-icon-type="Экстерьер"] {
+			background-color: #174D45;
+
+			&::before {
+				@include size(1.6rem, 1.1rem);
+
+				background-image: url(../img/icons/comparing-cars/exterior.svg);
+			}
+		}
+
+		&[data-icon-type="Комфорт"] {
+			background-color: #FFD13B;
+
+			&::before {
+				@include size(1.4rem, 1.4rem);
+
+				background-image: url(../img/icons/comparing-cars/comfort.svg);
+			}
+		}
+
+		&[data-icon-type="Интерьер"] {
+			background-color: $color-light;
+
+			&::before {
+				@include size(1.6rem, 1.6rem);
+
+				background-image: url(../img/icons/comparing-cars/interior.svg);
+			}
+		}
+
+		&[data-icon-type="Технические особенности автомобиля"] {
+			background-color: $color-placeholder;
+
+			&::before {
+				@include size(1.6rem, 1.6rem);
+
+				background-image: url(../img/icons/comparing-cars/characteristics.svg);
+			}
+		}
+
+		&[data-icon-type="Дополнительно"] {
+			background-color: $color-lighter;
+
+			&::before {
+				@include size(1.6rem, 1.6rem);
+
+				background-image: url(../img/icons/comparing-cars/additional-equipment.svg);
+			}
+		}
+
+		&[data-icon-type="Мультимедиа"] {
+			background-color: #8F1A1A;
+
+			&::before {
+				@include size(1.6rem, 1.2rem);
+
+				background-image: url(../img/icons/comparing-cars/multimedia.svg);
+			}
+		}
+
+		&[data-icon-type="Обзор и фары"] {
+			background-color: #248FE0;
+
+			&::before {
+				@include size(1.6rem, 1.2rem);
+
+				background-image: url(../img/icons/comparing-cars/headlights.svg);
+			}
+		}
+
+		&[data-icon-type="Цена с макс. скидкой"] {
+			background-color: #FF5F5F;
+
+			&::before {
+				@include size(2.2rem, 1.4rem);
+			}
+		}
+
+	}
+
+	// override
+
+	.mat-expansion-panel {
+		padding: 0;
+		border-top: 1px solid $color-lightest-popup;
+
+		.comparing-cars-page-table--body & {
+
+			&:first-child {
+				border-top-color: transparent;
+			}
+		}
+
+		//&:last-child {
+		//  border-bottom: 1px solid $color-lightest-popup;
+		//}
+	}
+
+	.mat-expansion-panel-header {
+		padding: 0 1.6rem;
+	}
+
+	.mat-expansion-panel-header-title {
+		@include text-base-big(500);
+
+		align-items: center;
+		max-width: 100%;
+
+		&.text-align-center {
+			justify-content: center;
+		}
+
+		span {
+			@include ellipsis(calc(100% - 5.2rem), inline-block); // 5.2 magic number
+		}
+	}
+
+	.mat-expansion-panel-body {
+		padding: 1.5rem 0 1.6rem;
+		border-top: 1px solid $color-lightest-popup;
+	}
+
+	.mat-expansion-panel-spacing {
+		margin: 0;
+	}
+
+	.mat-expansion-indicator {
+		display: flex;
+		justify-content: center;
+		width: 2rem;
+
+		&::after {
+			margin: 0 auto
+		}
+	}
+}
+
+.ng-comparing-cars-accordion-mob {
+
+	&--not-arrow {
+
+		.mat-expansion-panel-header-title {
+			margin-right: 0;
+		}
+
+		.mat-expansion-indicator {
+			display: none;
+		}
+	}
+
+	// override
+
+	.mat-expansion-panel {
+
+		&:not(:first-child) {
+			border-top: 2px solid $color-lightest-popup;
+		}
+	}
+
+	.mat-expansion-panel-header {
+		padding: 2rem 1.6rem;
+	}
+
+	.mat-expansion-panel-body {
+		padding: 1.6rem 1.6rem 0;
+		border-top: 2px solid $color-lightest-popup;
+	}
+
+	.mat-expansion-panel-spacing {
+		margin: 0;
+	}
+}

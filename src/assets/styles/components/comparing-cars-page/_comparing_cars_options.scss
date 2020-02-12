@@ -1,0 +1,79 @@
+@charset "UTF-8";
+
+.comparing-cars-options-list {
+
+	&--price {
+
+		.comparing-cars-options-list__item[data-content]::before {
+			content: none !important;
+		}
+	}
+
+	&__item {
+		@include text-offer;
+
+		position: relative;
+		padding: .6rem 1.6rem;
+
+		&:not(.comparing-cars-options-list--not-bullet) {
+			padding-left: 3.4rem;
+
+			&::before {
+				@include size(.4rem);
+
+				position: absolute;
+				top: 1.4rem;
+				left: 1.6rem;
+				border-radius: 50%;
+				background: $color-base;
+				content: "";
+			}
+		}
+
+		.comparing-cars-options-list--check-type & {
+			position: relative;
+			padding-left: 1.6rem;
+			overflow: hidden;
+
+			&::before {
+				@include size(calc(29.2rem - 5rem), auto); // 3.2rem - paddings
+
+				position: relative;
+				top: auto;
+				left: auto;
+				transform: translate(0, 0);
+				display: block;
+				min-width: calc(29.2rem - 5rem);
+				max-width: calc(29.2rem - 5rem);
+				border-radius: 0;
+				opacity: 0;
+				content: attr(data-content);
+			}
+
+			&::after {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				content: "";
+			}
+
+			&[data-check-state="0"]::after {
+				@include size(.6rem, .2rem);
+
+				background: $color-lighter;
+			}
+
+			&[data-check-state="1"]::after {
+				@include size(2rem);
+
+				background: {
+					position: 50%;
+					size: contain;
+					repeat: no-repeat;
+					image: url(../img/icons/comparing-cars/checkbox.svg);
+				};
+			}
+		}
+	}
+}
